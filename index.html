@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPDB & Profil Sekolah</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+    }
+    header {
+      background: #004aad;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    section {
+      margin: 20px;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 220px;
+      cursor: pointer;
+      transition: 0.3s;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 5px 12px rgba(0,0,0,0.15);
+    }
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 10px;
+    }
+    .card-body h4 {
+      margin: 5px 0;
+      font-size: 18px;
+      color: #004aad;
+    }
+    .card-body p {
+      margin: 0;
+      font-size: 14px;
+      color: #333;
+    }
+    /* Modal */
+    .modal-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px; right: 10px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>PPDB & Profil Sekolah</h1>
+  <p>Pendaftaran Peserta Didik Baru — Jurusan & Ekstrakurikuler</p>
+</header>
+
+<section>
+  <h2>📝 Informasi PPDB</h2>
+  <div class="card-container">
+    <div class="card" onclick="showModal('ppdb')">
+      <img src="https://www.educations.com/images/resources/Illustration-school.jpg" alt="PPDB">
+      <div class="card-body">
+        <h4>PPDB 2026</h4>
+        <p>Klik untuk info lengkap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>🎓 Jurusan</h2>
+  <div class="card-container">
+    <div class="card" onclick="showModal('jurusan1')">
+      <img src="https://images.pexels.com/photos/4145153/pexels-photo-4145153.jpeg?auto=compress" alt="Jurusan TKJ">
+      <div class="card-body">
+        <h4>Teknik Komputer & Jaringan</h4>
+        <p>IT & Jaringan</p>
+      </div>
+    </div>
+    <div class="card" onclick="showModal('jurusan2')">
+      <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress" alt="Jurusan Multimedia">
+      <div class="card-body">
+        <h4>Multimedia</h4>
+        <p>Desain & Media Digital</p>
+      </div>
+    </div>
+    <!-- Tambah jurusan lain jika perlu -->
+  </div>
+</section>
+
+<section>
+  <h2>⚽ Ekstrakulikuler</h2>
+  <div class="card-container">
+    <div class="card" onclick="showModal('eskul1')">
+      <img src="https://images.pexels.com/photos/837140/pexels-photo-837140.jpeg?auto=compress" alt="Sepak Bola">
+      <div class="card-body">
+        <h4>Sepak Bola</h4>
+        <p>Tim Garuda</p>
+      </div>
+    </div>
+    <div class="card" onclick="showModal('eskul2')">
+      <img src="https://images.pexels.com/photos/1595386/pexels-photo-1595386.jpeg?auto=compress" alt="Paskibra">
+      <div class="card-body">
+        <h4>Paskibra</h4>
+        <p>Pengibar Bendera</p>
+      </div>
+    </div>
+    <!-- Tambah eskul lain -->
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="modal" class="modal-bg" onclick="closeModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+  function showModal(key) {
+    const modal = document.getElementById("modal");
+    const body = document.getElementById("modal-body");
+    
+    let html = "";
+
+    switch(key) {
+      case "ppdb":
+        html = `
+          <h2>Informasi PPDB 2026</h2>
+          <p>Silakan lengkapi formulir pendaftaran, unggah berkas, dan pilih jurusan yang diminati.</p>
+          <ul>
+            <li>Kuota: 120 siswa</li>
+            <li>Syarat: SKHUN, AKTE KELAHIRAN, Pas Foto</li>
+            <li>Biaya: Gratis</li>
+          </ul>
+        `;
+        break;
+      case "jurusan1":
+        html = `
+          <h2>Teknik Komputer & Jaringan</h2>
+          <p>Fokus pada perbaikan komputer, jaringan, dan IT support.</p>
+          <ul>
+            <li>Durasi: 3 Tahun</li>
+            <li>Kurikulum: Jaringan, Server, Keamanan</li>
+          </ul>
+        `;
+        break;
+      case "jurusan2":
+        html = `
+          <h2>Multimedia</h2>
+          <p>Belajar desain, animasi, video editing, dan fotografi.</p>
+          <ul>
+            <li>Software: Adobe Suite</li>
+            <li>Proyek Akhir: Portfolio Digital</li>
+          </ul>
+        `;
+        break;
+      case "eskul1":
+        html = `
+          <h2>Ekstrakurikuler Sepak Bola</h2>
+          <p>Tim resmi sekolah yang mengikuti liga lokal.</p>
+          <p>Latihan: Senin & Jumat (16.00—18.00)</p>
+        `;
+        break;
+      case "eskul2":
+        html = `
+          <h2>Ekstrakurikuler Paskibra</h2>
+          <p>Latihan baris-berbaris & upacara bendera.</p>
+          <p>Latihan: Rabu (15.30—17.00)</p>
+        `;
+        break;
+      default:
+        html = `<p>Data tidak ditemukan!</p>`;
+    }
+
+    body.innerHTML = html;
+    modal.style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("modal").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
